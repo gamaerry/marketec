@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MarkeTec | Registro de vendedor</title>
 </head>
+
 <body>
   <header>
     <h1>Registro de vendedor</h1>
@@ -25,18 +27,39 @@
     </p>
     <form>
       <label>
-        Nombre completo
+        Nombre completo / del negocio
         <input type="text" name="nombre" />
       </label>
       <br />
       <label>
-        Correo institucional
+        Correo institucional / comercial
         <input type="email" name="correo" />
       </label>
       <br />
       <label>
+        Tipo de producto
+        <select name="tipo_producto">
+          <option value="alimento">Alimento</option>
+          <option value="accesorios">Accesorios</option>
+          <option value="servicios">Servicios</option>
+          <option value="otros">Otros</option>
+        </select>
+      </label>
+      <br />
+      <label>
+        Estudiante
+        <input type="checkbox" id="es_estudiante" />
+      </label>
+      <br />
+      <label>
         Carrera
-        <input type="text" name="carrera" />
+        <select name="carrera" id="carrera" disabled>
+          <option value="ing_sistemas">Ing. en Sistemas</option>
+          <option value="ing_electrica">Ing. Eléctrica</option>
+          <option value="ing_mecanica">Ing. Mecánica</option>
+          <option value="lic_administracion">Lic. Administración</option>
+          <option value="lic_contaduria">Lic. Contaduria</option>
+        </select>
       </label>
       <br />
       <button type="submit">Enviar registro</button>
@@ -46,5 +69,14 @@
   <footer>
     <p>MarkeTec · ITM</p>
   </footer>
+  <script>
+    const externoEstudiante = document.getElementById("es_estudiante");
+    const carrera = document.getElementById("carrera");
+
+    externoEstudiante.addEventListener("change", () => {
+      carrera.disabled = !externoEstudiante.checked;
+    });
+  </script>
 </body>
+
 </html>
