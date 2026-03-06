@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,11 +8,13 @@
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-light sticky-top top-nav">
     <div class="container">
       <a class="navbar-brand fw-bold" href="index.html">MarkeTec</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
@@ -35,7 +38,8 @@
           <div class="col-lg-8">
             <span class="badge rounded-pill brand-badge px-3 py-2 mb-3">GESTIÓN DE MENÚ</span>
             <h1 class="display-6 fw-bold mb-3">Acceso para vendedores registrados</h1>
-            <p class="lead mb-0">Autentícate para administrar tu menú, crear categorías y actualizar precios desde una interfaz simple.</p>
+            <p class="lead mb-0">Autentícate para administrar tu menú, crear categorías y actualizar precios desde una
+              interfaz simple.</p>
           </div>
           <div class="col-lg-4">
             <div class="stat-card rounded-4 p-3">
@@ -62,7 +66,6 @@
               <button class="btn btn-success px-4" type="submit">Entrar</button>
             </div>
           </form>
-          <p class="menu-meta mt-3 mb-0">Credenciales iniciales: revisa <code>usuarios.json</code>.</p>
         </article>
 
         <section id="admin-panel" class="d-none">
@@ -72,7 +75,8 @@
               <p class="menu-meta mb-0">Los cambios se guardan en este navegador con <code>localStorage</code>.</p>
             </div>
             <div class="d-flex flex-wrap gap-2">
-              <a id="public-link" class="btn btn-outline-success" href="cafeteria-tec.html?vendedor=cafeteria-tec">Ver menú público</a>
+              <a id="public-link" class="btn btn-outline-success" href="cafeteria-tec.html?vendedor=cafeteria-tec">Ver
+                menú público</a>
               <button id="logout-btn" class="btn btn-outline-secondary" type="button">Cerrar sesión</button>
             </div>
           </div>
@@ -84,7 +88,8 @@
                 <form id="category-form" class="row g-3">
                   <div class="col-12">
                     <label for="category-name" class="form-label">Nombre interno</label>
-                    <input class="form-control" id="category-name" name="category-name" type="text" placeholder="Ej. desayunos_especiales" required />
+                    <input class="form-control" id="category-name" name="category-name" type="text"
+                      placeholder="Ej. desayunos_especiales" required />
                     <div class="form-text">Usa minúsculas y guiones bajos para mantener el formato actual.</div>
                   </div>
                   <div class="col-12 d-grid">
@@ -225,10 +230,10 @@
                       <td>${item.nombre || item.nota || "Variedades"}</td>
                       <td>${formatPrice(item)}</td>
                       <td>${[
-                        item.variedades?.length ? `Variedades: ${item.variedades.join(", ")}` : "",
-                        item.incluye?.length ? `Incluye: ${item.incluye.join(", ")}` : "",
-                        item.nota && item.nombre ? `Nota: ${item.nota}` : ""
-                      ].filter(Boolean).join(" · ") || "Sin detalle extra"}</td>
+          item.variedades?.length ? `Variedades: ${item.variedades.join(", ")}` : "",
+          item.incluye?.length ? `Incluye: ${item.incluye.join(", ")}` : "",
+          item.nota && item.nombre ? `Nota: ${item.nota}` : ""
+        ].filter(Boolean).join(" · ") || "Sin detalle extra"}</td>
                       <td class="text-end">
                         <button class="btn btn-outline-secondary btn-sm me-2" type="button" data-action="edit-item" data-category="${category}" data-index="${index}">Editar</button>
                         <button class="btn btn-outline-danger btn-sm" type="button" data-action="delete-item" data-category="${category}" data-index="${index}">Eliminar</button>
@@ -334,7 +339,7 @@
         return;
       }
 
-      const { action, category, index } = button.dataset;
+      const {action, category, index} = button.dataset;
 
       if (action === "delete-category") {
         updateVendor((vendor) => {
@@ -422,4 +427,5 @@
   </script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
