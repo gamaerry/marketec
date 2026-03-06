@@ -78,6 +78,7 @@ body {
 
 .stat-card {
   background: #fff;
+  color: var(--mt-text);
 }
 
 .stat-card .stat-label {
