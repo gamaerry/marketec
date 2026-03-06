@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Café-Tec</title>
+  <title>MarkeTec | Menú de vendedor</title>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -32,9 +32,9 @@
       <section class="hero-card rounded-5 text-white p-4 p-lg-5 mb-4">
         <div class="row align-items-center g-4">
           <div class="col-lg-8">
-            <span class="badge rounded-pill brand-badge px-3 py-2 mb-3">MENÚ DESTACADO</span>
+            <span id="hero-badge" class="badge rounded-pill brand-badge px-3 py-2 mb-3">MENÚ DESTACADO</span>
             <h1 id="titulo" class="display-6 fw-bold mb-3"></h1>
-            <p class="lead mb-0">Consulta el menú de cafetería en un formato más claro, pensado para revisarse rápido desde el celular durante clases o recesos.</p>
+            <p id="hero-descripcion" class="lead mb-0"></p>
           </div>
           <div class="col-lg-4">
             <div class="stat-card rounded-4 p-3">
@@ -49,348 +49,97 @@
     </div>
   </main>
 
-  <!-- JSON incrustado -->
-  <script id="menu-data" type="application/json">
-{
-    "restaurante": "Café-Tec",
-    "categorias": {
-        "tortas": [
-            {
-                "precio": 40,
-                "variedades": [
-                    "Jamón",
-                    "Rajas",
-                    "Salchicha"
-                ]
-            },
-            {
-                "precio": 45,
-                "variedades": [
-                    "Deshebrada",
-                    "Tinga",
-                    "Mole"
-                ]
-            },
-            {
-                "precio": 50,
-                "variedades": [
-                    "Milanesa",
-                    "Cochinita",
-                    "Asada",
-                    "Bisteck",
-                    "Chorizo",
-                    "Adobada"
-                ]
-            },
-            {
-                "nota": "Extra queso",
-                "precio_adicional": 5
-            }
-        ],
-        "sandwiches": [
-            {
-                "precio": 35,
-                "variedades": [
-                    "Jamón",
-                    "Salchicha",
-                    "Deshebrada",
-                    "Tinga",
-                    "Rajas",
-                    "Mole"
-                ]
-            },
-            {
-                "precio": 40,
-                "variedades": [
-                    "Milanesa",
-                    "Cochinita",
-                    "Asada",
-                    "Bisteck",
-                    "Combinados"
-                ]
-            }
-        ],
-        "antojitos": [
-            {
-                "nombre": "Tacos (unidad)",
-                "variedades": [
-                    "Asada",
-                    "Milanesa",
-                    "Cochinita",
-                    "Pechuga",
-                    "Combinados",
-                    "Bisteck",
-                    "Chorizo",
-                    "Adobada",
-                    "Deshebrada",
-                    "Tinga",
-                    "Salchicha"
-                ],
-                "precio": 15
-            },
-            {
-                "nombre": "Quesadillas largas sencillas",
-                "precio": 20
-            },
-            {
-                "nombre": "Quesadillas largas con guisado",
-                "precio": 30
-            },
-            {
-                "nombre": "Molletes (2) sencillos",
-                "precio": 40
-            },
-            {
-                "nombre": "Molletes (2) con guisado",
-                "precio": 50
-            }
-        ],
-        "a_la_carta": [
-            {
-                "nombre": "Sincronizadas",
-                "precio": 70
-            },
-            {
-                "nombre": "Chilaquiles con carne",
-                "precio": 65
-            },
-            {
-                "nombre": "Hamburguesa con papas",
-                "precio": 65
-            },
-            {
-                "nombre": "Tacos Dorados (4)",
-                "precio": 60
-            },
-            {
-                "nombre": "Huevos al gusto",
-                "precio": 60
-            },
-            {
-                "nombre": "Chilaquiles con 1 huevo",
-                "precio": 60
-            },
-            {
-                "nombre": "Chilaquiles sencillos",
-                "precio": 55
-            },
-            {
-                "nombre": "Enchiladas Verdes",
-                "precio": 55
-            },
-            {
-                "nombre": "Hamburguesa sencilla",
-                "precio": 55
-            },
-            {
-                "nombre": "Baguette",
-                "precio": 55
-            },
-            {
-                "nombre": "Bowl de arroz Pollo Teriyaki",
-                "precio": 55
-            },
-            {
-                "nombre": "Costras",
-                "precio": 50
-            },
-            {
-                "nombre": "Bowl de arroz Vegetariano",
-                "precio": 50
-            },
-            {
-                "nombre": "Ensalada (pechuga, asada o milanesa)",
-                "precio": 50
-            },
-            {
-                "nombre": "Burritos (2)",
-                "precio": 45
-            },
-            {
-                "nombre": "Hot-Dog con papas",
-                "precio": 45
-            },
-            {
-                "nombre": "Orden de nuggets",
-                "precio": 45
-            },
-            {
-                "nombre": "Energético",
-                "precio": 45
-            },
-            {
-                "nombre": "Orden de papas",
-                "precio": 40
-            },
-            {
-                "nombre": "Sope guisado",
-                "precio": 35
-            },
-            {
-                "nombre": "Hot-Dog sencillo",
-                "precio": 30
-            },
-            {
-                "nombre": "Sope sencillo",
-                "precio": 25
-            },
-            {
-                "nombre": "Media orden de papas",
-                "precio": 25
-            },
-            {
-                "nombre": "Banderilla",
-                "precio": 25
-            }
-        ],
-        "bebidas": [
-            {
-                "nombre": "Jugo",
-                "precio": 30
-            },
-            {
-                "nombre": "Licuado",
-                "precio": 30
-            },
-            {
-                "nombre": "Agua del día",
-                "precio": 20
-            }
-        ],
-        "combos_con_agua": [
-            {
-                "nombre": "Hamburguesa con papas",
-                "precio": 70
-            },
-            {
-                "nombre": "2 quesadillas con guisado",
-                "precio": 65
-            },
-            {
-                "nombre": "Orden de tacos dorados",
-                "precio": 65
-            },
-            {
-                "nombre": "Ensalada",
-                "precio": 60
-            },
-            {
-                "nombre": "3 tacos de guisado",
-                "precio": 55
-            },
-            {
-                "nombre": "Hot-Dog con papas",
-                "precio": 50
-            },
-            {
-                "nombre": "Nuggets con papas",
-                "precio": 50
-            },
-            {
-                "nombre": "Banderilla con papas",
-                "precio": 30
-            }
-        ],
-        "paquetes_completos": [
-            {
-                "nombre": "Almuerzo",
-                "precio": 60,
-                "incluye": [
-                    "Fruta",
-                    "1 guisado",
-                    "1 guarnición",
-                    "Bolillo o tortillas",
-                    "Agua o café"
-                ]
-            },
-            {
-                "nombre": "Comida Corrida",
-                "precio": 65,
-                "incluye": [
-                    "Entrada",
-                    "1 guisado",
-                    "2 guarniciones",
-                    "Bolillo o tortillas",
-                    "Agua"
-                ]
-            }
-        ]
-    }
-}</script>
-
+  <script src="marketec.js"></script>
   <script>
-    const data = JSON.parse(document.getElementById("menu-data").textContent);
-    document.getElementById("titulo").textContent = data.restaurante;
+    async function renderVendorMenu() {
+      const params = new URLSearchParams(window.location.search);
+      const vendorSlug = params.get("vendedor") || "cafeteria-tec";
+      const vendors = await loadVendors();
+      const vendor = getVendorBySlug(vendors, vendorSlug);
 
-    const container = document.getElementById("menu");
-    const normalizeLabel = (value) => value.replaceAll("_", " ").replace(/\b\w/g, (char) => char.toUpperCase());
+      if (!vendor) {
+        document.getElementById("titulo").textContent = "Vendedor no encontrado";
+        document.getElementById("hero-descripcion").textContent = "No hay un menú disponible para el vendedor solicitado.";
+        return;
+      }
 
-    for (const categoria in data.categorias) {
-      const column = document.createElement("div");
-      column.className = "col-12 col-xl-6";
+      document.title = `MarkeTec | ${vendor.nombre}`;
+      document.getElementById("hero-badge").textContent = vendor.heroBadge || "MENÚ DESTACADO";
+      document.getElementById("titulo").textContent = vendor.nombre;
+      document.getElementById("hero-descripcion").textContent = vendor.heroDescripcion || vendor.descripcion;
 
-      const card = document.createElement("article");
-      card.className = "menu-card rounded-4 p-4 h-100";
+      const container = document.getElementById("menu");
+      container.innerHTML = "";
 
-      const title = document.createElement("div");
-      title.className = "d-flex justify-content-between align-items-center gap-3 mb-3";
-      title.innerHTML = `
-        <div>
-          <h2 class="h4 category-title mb-1">${normalizeLabel(categoria)}</h2>
-          <p class="text-secondary mb-0">${data.categorias[categoria].length} opciones registradas</p>
-        </div>
-        <span class="badge rounded-pill text-bg-light border">${data.categorias[categoria].length}</span>
-      `;
-      card.appendChild(title);
+      for (const categoria in vendor.menu) {
+        const column = document.createElement("div");
+        column.className = "col-12 col-xl-6";
 
-      const list = document.createElement("ul");
-      list.className = "list-unstyled soft-list mb-0";
+        const card = document.createElement("article");
+        card.className = "menu-card rounded-4 p-4 h-100";
 
-      data.categorias[categoria].forEach((item) => {
-        const listItem = document.createElement("li");
-        listItem.className = "py-3";
-
-        const name = item.nombre || item.nota || "Variedades";
-        const price = item.precio ? `$${item.precio}` : item.precio_adicional ? `+$${item.precio_adicional}` : "Consultar";
-
-        let extraContent = "";
-
-        if (item.variedades) {
-          extraContent += `
-            <div class="d-flex flex-wrap gap-2 mt-3">
-              ${item.variedades.map((variedad) => `<span class="badge rounded-pill soft-chip">${variedad}</span>`).join("")}
-            </div>
-          `;
-        }
-
-        if (item.incluye) {
-          extraContent += `
-            <div class="mt-3">
-              <p class="small text-secondary mb-2">Incluye:</p>
-              <div class="d-flex flex-wrap gap-2">
-                ${item.incluye.map((detalle) => `<span class="badge rounded-pill soft-chip">${detalle}</span>`).join("")}
-              </div>
-            </div>
-          `;
-        }
-
-        listItem.innerHTML = `
-          <div class="d-flex justify-content-between align-items-start gap-3">
-            <div>
-              <h3 class="h6 mb-1">${name}</h3>
-              ${item.nota && !item.nombre ? '<p class="text-secondary small mb-0">Complemento adicional</p>' : ""}
-            </div>
-            <span class="price-tag">${price}</span>
+        const title = document.createElement("div");
+        title.className = "d-flex justify-content-between align-items-center gap-3 mb-3";
+        title.innerHTML = `
+          <div>
+            <h2 class="h4 category-title mb-1">${normalizeLabel(categoria)}</h2>
+            <p class="text-secondary mb-0">${vendor.menu[categoria].length} opciones registradas</p>
           </div>
-          ${extraContent}
+          <span class="badge rounded-pill text-bg-light border">${vendor.menu[categoria].length}</span>
         `;
-        list.appendChild(listItem);
-      });
+        card.appendChild(title);
 
-      card.appendChild(list);
-      column.appendChild(card);
-      container.appendChild(column);
+        const list = document.createElement("ul");
+        list.className = "list-unstyled soft-list mb-0";
+
+        vendor.menu[categoria].forEach((item) => {
+          const listItem = document.createElement("li");
+          listItem.className = "py-3";
+
+          let extraContent = "";
+
+          if (item.variedades?.length) {
+            extraContent += `
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                ${item.variedades.map((variedad) => `<span class="badge rounded-pill soft-chip">${variedad}</span>`).join("")}
+              </div>
+            `;
+          }
+
+          if (item.incluye?.length) {
+            extraContent += `
+              <div class="mt-3">
+                <p class="small text-secondary mb-2">Incluye:</p>
+                <div class="d-flex flex-wrap gap-2">
+                  ${item.incluye.map((detalle) => `<span class="badge rounded-pill soft-chip">${detalle}</span>`).join("")}
+                </div>
+              </div>
+            `;
+          }
+
+          listItem.innerHTML = `
+            <div class="d-flex justify-content-between align-items-start gap-3">
+              <div>
+                <h3 class="h6 mb-1">${item.nombre || item.nota || "Variedades"}</h3>
+                ${item.nota && !item.nombre ? '<p class="text-secondary small mb-0">Complemento adicional</p>' : ""}
+              </div>
+              <span class="price-tag">${formatPrice(item)}</span>
+            </div>
+            ${extraContent}
+          `;
+          list.appendChild(listItem);
+        });
+
+        card.appendChild(list);
+        column.appendChild(card);
+        container.appendChild(column);
+      }
     }
+
+    renderVendorMenu().catch(() => {
+      document.getElementById("titulo").textContent = "No fue posible cargar el menú";
+      document.getElementById("hero-descripcion").textContent = "Verifica que el proyecto se esté ejecutando desde un servidor local.";
+    });
   </script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>

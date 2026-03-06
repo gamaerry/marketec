@@ -148,6 +148,37 @@ body {
   color: var(--mt-muted);
 }
 
+.admin-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.auth-panel {
+  max-width: 28rem;
+}
+
+.menu-admin-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--mt-border);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+}
+
+.menu-admin-card .form-label,
+.menu-admin-card .form-text,
+.auth-panel .form-label {
+  color: var(--mt-primary-dark);
+}
+
+.menu-meta {
+  color: var(--mt-muted);
+  font-size: 0.95rem;
+}
+
+.empty-state {
+  border: 1px dashed rgba(15, 118, 110, 0.24);
+  background: rgba(15, 118, 110, 0.04);
+}
+
 @media (max-width: 767.98px) {
   .hero-card {
     border-radius: 1.5rem !important;

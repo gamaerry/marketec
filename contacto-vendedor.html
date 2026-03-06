@@ -22,6 +22,7 @@
           <li class="nav-item"><a class="nav-link" href="mapa.html">Mapa</a></li>
           <li class="nav-item"><a class="nav-link" href="registro-vendedor.html">Registro</a></li>
           <li class="nav-item"><a class="nav-link active" href="contacto-vendedor.html">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="gestion-vendedor.html">Acceso vendedor</a></li>
         </ul>
       </div>
     </div>
@@ -36,20 +37,8 @@
             <p class="text-secondary mb-0">Consulta perfiles activos y entra a sus catálogos para revisar productos disponibles dentro del campus.</p>
           </article>
         </div>
-        <div class="col-md-6 col-xl-4">
-          <a class="contact-link" href="cafeteria-tec.html">
-            <article class="content-card rounded-4 p-4 h-100">
-              <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
-                <div>
-                  <span class="badge rounded-pill text-bg-success mb-2">Comida</span>
-                  <h2 class="h4 mb-1">Cafetería Tec</h2>
-                  <p class="text-secondary mb-0">Menú escolar con desayunos, antojitos, combos y bebidas.</p>
-                </div>
-                <div class="icon-pill flex-shrink-0">☕</div>
-              </div>
-              <p class="mb-0 fw-semibold">Ver menú completo</p>
-            </article>
-          </a>
+        <div class="col-12">
+          <div id="vendors-list" class="row g-4"></div>
         </div>
       </section>
     </div>
@@ -58,7 +47,41 @@
   <footer class="container pb-4">
     <p class="footer-note text-center mb-0">MarkeTec · Instituto Tecnológico de Morelia</p>
   </footer>
+  <script src="marketec.js"></script>
+  <script>
+    async function renderVendors() {
+      const vendors = await loadVendors();
+      const container = document.getElementById("vendors-list");
 
+      container.innerHTML = vendors.map((vendor) => `
+        <div class="col-md-6 col-xl-4">
+          <a class="contact-link" href="cafeteria-tec.html?vendedor=${vendor.slug}">
+            <article class="content-card rounded-4 p-4 h-100">
+              <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                <div>
+                  <span class="badge rounded-pill text-bg-success mb-2">${vendor.categoria}</span>
+                  <h2 class="h4 mb-1">${vendor.nombre}</h2>
+                  <p class="text-secondary mb-0">${vendor.descripcion}</p>
+                </div>
+                <div class="icon-pill flex-shrink-0">${vendor.icono || "•"}</div>
+              </div>
+              <p class="mb-0 fw-semibold">Ver menú completo</p>
+            </article>
+          </a>
+        </div>
+      `).join("");
+    }
+
+    renderVendors().catch(() => {
+      document.getElementById("vendors-list").innerHTML = `
+        <div class="col-12">
+          <article class="content-card rounded-4 p-4">
+            <p class="mb-0">No fue posible cargar los vendedores. Ejecuta el proyecto desde un servidor local para habilitar la lectura de JSON.</p>
+          </article>
+        </div>
+      `;
+    });
+  </script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
