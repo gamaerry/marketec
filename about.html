@@ -4,39 +4,58 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MarkeTec | About us</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>About us</h1>
-  </header>
-
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="about.html">About us</a> |
-    <a href="mision-vision.html">Misión y visión</a> |
-    <a href="mapa.html">Mapa del ITM</a> |
-    <a href="registro-vendedor.html">Registro de vendedor</a> |
-    <a href="contacto-vendedor.html">Contacto de vendedor</a>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top top-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">MarkeTec</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="about.html">About us</a></li>
+          <li class="nav-item"><a class="nav-link" href="mision-vision.html">Misión y visión</a></li>
+          <li class="nav-item"><a class="nav-link" href="mapa.html">Mapa</a></li>
+          <li class="nav-item"><a class="nav-link" href="registro-vendedor.html">Registro</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto-vendedor.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <h2>¿Qué es MarkeTec?</h2>
-    <p>
-      MarkeTec es una aplicación web orientada a la comunidad del Instituto Tecnológico
-      de Morelia para facilitar la compra, venta y trueque de bienes.
-    </p>
+  <main class="container py-4 py-lg-5">
+    <div class="app-shell rounded-5 p-3 p-md-4 p-xl-5">
+      <section class="hero-card rounded-5 text-white p-4 p-lg-5 mb-4">
+        <span class="badge rounded-pill brand-badge px-3 py-2 mb-3">SOBRE LA PLATAFORMA</span>
+        <h1 class="display-6 fw-bold mb-3">Una red estudiantil para mover productos reales dentro del campus.</h1>
+        <p class="lead mb-0">MarkeTec conecta estudiantes y comercios del ITM para facilitar compra, venta y trueque con una experiencia web ligera y accesible.</p>
+      </section>
 
-    <section>
-      <h3>Público objetivo</h3>
-      <p>
-        Estudiantes del ITM y comerciantes dentro de la institución interesados en
-        la compra/venta de bienes.
-      </p>
-    </section>
+      <section class="row g-4">
+        <div class="col-lg-7">
+          <article class="content-card rounded-4 p-4 h-100">
+            <h2 class="h3 section-title mb-3">¿Qué es MarkeTec?</h2>
+            <p class="mb-0">Es una aplicación web orientada a la comunidad del Instituto Tecnológico de Morelia para publicar productos, encontrar ofertas útiles y generar intercambios entre personas que comparten el mismo entorno escolar.</p>
+          </article>
+        </div>
+        <div class="col-lg-5">
+          <article class="content-card rounded-4 p-4 h-100">
+            <h2 class="h3 section-title mb-3">Público objetivo</h2>
+            <p class="mb-0">Está pensada para estudiantes del ITM y comerciantes dentro de la institución que buscan un canal sencillo para compra, venta y difusión de bienes y servicios.</p>
+          </article>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <p>MarkeTec · ITM</p>
+  <footer class="container pb-4">
+    <p class="footer-note text-center mb-0">MarkeTec · Instituto Tecnológico de Morelia</p>
   </footer>
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

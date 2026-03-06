@@ -4,32 +4,61 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MarkeTec | Contacto de vendedor</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Contacto de vendedor</h1>
-  </header>
-
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="about.html">About us</a> |
-    <a href="mision-vision.html">Misión y visión</a> |
-    <a href="mapa.html">Mapa del ITM</a> |
-    <a href="registro-vendedor.html">Registro de vendedor</a> |
-    <a href="contacto-vendedor.html">Contacto de vendedor</a>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top top-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">MarkeTec</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <li class="nav-item"><a class="nav-link" href="mision-vision.html">Misión y visión</a></li>
+          <li class="nav-item"><a class="nav-link" href="mapa.html">Mapa</a></li>
+          <li class="nav-item"><a class="nav-link" href="registro-vendedor.html">Registro</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contacto-vendedor.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <p>
-      Información de contacto del vendedor.
-    </p>
-    <ul>
-      <li><a href="cafeteria-tec.html">Cafeteria Tec</a></li>
-    </ul>
+  <main class="container py-4 py-lg-5">
+    <div class="app-shell rounded-5 p-3 p-md-4 p-xl-5">
+      <section class="row g-4">
+        <div class="col-12">
+          <article class="content-card rounded-4 p-4">
+            <h1 class="h2 section-title mb-2">Contacto de vendedores</h1>
+            <p class="text-secondary mb-0">Consulta perfiles activos y entra a sus catálogos para revisar productos disponibles dentro del campus.</p>
+          </article>
+        </div>
+        <div class="col-md-6 col-xl-4">
+          <a class="contact-link" href="cafeteria-tec.html">
+            <article class="content-card rounded-4 p-4 h-100">
+              <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                <div>
+                  <span class="badge rounded-pill text-bg-success mb-2">Comida</span>
+                  <h2 class="h4 mb-1">Cafetería Tec</h2>
+                  <p class="text-secondary mb-0">Menú escolar con desayunos, antojitos, combos y bebidas.</p>
+                </div>
+                <div class="icon-pill flex-shrink-0">☕</div>
+              </div>
+              <p class="mb-0 fw-semibold">Ver menú completo</p>
+            </article>
+          </a>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <p>MarkeTec · ITM</p>
+  <footer class="container pb-4">
+    <p class="footer-note text-center mb-0">MarkeTec · Instituto Tecnológico de Morelia</p>
   </footer>
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

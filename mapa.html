@@ -4,29 +4,55 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MarkeTec | Mapa del ITM</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Mapa del ITM</h1>
-  </header>
-
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="about.html">About us</a> |
-    <a href="mision-vision.html">Misión y visión</a> |
-    <a href="mapa.html">Mapa del ITM</a> |
-    <a href="registro-vendedor.html">Registro de vendedor</a> |
-    <a href="contacto-vendedor.html">Contacto de vendedor</a>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top top-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">MarkeTec</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <li class="nav-item"><a class="nav-link" href="mision-vision.html">Misión y visión</a></li>
+          <li class="nav-item"><a class="nav-link active" href="mapa.html">Mapa</a></li>
+          <li class="nav-item"><a class="nav-link" href="registro-vendedor.html">Registro</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto-vendedor.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <p>
-      Espacio reservado para el mapa del Instituto Tecnológico de Morelia.
-    </p>
+  <main class="container py-4 py-lg-5">
+    <div class="app-shell rounded-5 p-3 p-md-4 p-xl-5">
+      <section class="row g-4 align-items-center">
+        <div class="col-lg-5">
+          <article class="content-card rounded-4 p-4 h-100">
+            <h1 class="h2 section-title mb-3">Mapa del ITM</h1>
+            <p class="mb-0">Este espacio queda listo para integrar ubicaciones clave del campus, como zonas de entrega, puntos de encuentro y locales participantes dentro del Instituto Tecnológico de Morelia.</p>
+          </article>
+        </div>
+        <div class="col-lg-7">
+          <div class="map-placeholder rounded-4 d-flex align-items-center justify-content-center p-4 text-center">
+            <div>
+              <div class="icon-pill mx-auto mb-3">⌖</div>
+              <p class="fw-semibold mb-1">Área preparada para mapa interactivo</p>
+              <p class="text-secondary mb-0">Puedes insertar una imagen, iframe o croquis del campus aquí.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <p>MarkeTec · ITM</p>
+  <footer class="container pb-4">
+    <p class="footer-note text-center mb-0">MarkeTec · Instituto Tecnológico de Morelia</p>
   </footer>
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

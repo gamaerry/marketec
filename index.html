@@ -1,48 +1,78 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MarkeTec | Inicio</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header>
-    <h1>MarkeTec</h1>
-    <p>Venta y trueque entre estudiantes del Instituto Tecnológico de Morelia.</p>
-  </header>
 
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="about.html">About us</a> |
-    <a href="mision-vision.html">Misión y visión</a> |
-    <a href="mapa.html">Mapa del ITM</a> |
-    <a href="registro-vendedor.html">Registro de vendedor</a> |
-    <a href="contacto-vendedor.html">Contacto de vendedor</a>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top top-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">MarkeTec</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <li class="nav-item"><a class="nav-link" href="mision-vision.html">Misión y visión</a></li>
+          <li class="nav-item"><a class="nav-link" href="mapa.html">Mapa</a></li>
+          <li class="nav-item"><a class="nav-link" href="registro-vendedor.html">Registro</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto-vendedor.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <h2>Homepage</h2>
-    <p>
-      Esta aplicación web facilita la venta y/o intercambio de bienes entre estudiantes
-      del Instituto Tecnológico de Morelia (ITM).
-    </p>
-    <section>
-      <h3>Propósito</h3>
-      <p>
-        Controlar los requisitos de una plataforma que habilite compra/venta y trueque
-        entre estudiantes y comerciantes dentro del ITM.
-      </p>
-    </section>
-    <section>
-      <h3>Alcance</h3>
-      <p>
-        Accesible desde navegadores modernos en Windows, MacOS o Linux.
-      </p>
-    </section>
+  <main class="container py-4 py-lg-5">
+    <div class="app-shell rounded-5 p-3 p-md-4 p-xl-5">
+      <section class="hero-card rounded-5 text-white p-4 p-lg-5 mb-4 mb-lg-5">
+        <div class="row justify-content-center text-center g-4">
+          <div class="col-lg-9 col-xl-8">
+            <span class="badge rounded-pill brand-badge px-3 py-2 mb-3">COMPRA-VENTA ESCOLAR</span>
+            <h1 class="display-5 fw-bold mb-3">Compra, vende e intercambia entre estudiantes del ITM.</h1>
+            <p class="lead mb-4">Una interfaz simple para publicar oportunidades, descubrir productos dentro del campus
+              y conectar con vendedores de forma rápida desde cualquier dispositivo.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+              <a class="btn btn-warning btn-lg px-4" href="registro-vendedor.html">Quiero publicar</a>
+              <a class="btn btn-outline-light btn-lg px-4" href="contacto-vendedor.html">Explorar contactos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="row justify-content-center g-4">
+        <div class="col-lg-6 col-xl-5">
+          <article class="content-card rounded-4 p-4 h-100">
+            <div class="icon-pill mb-3">↔</div>
+            <h2 class="h3 section-title mb-3">Propósito</h2>
+            <p class="mb-0">MarkeTec organiza los requisitos de una plataforma que habilita compra, venta y trueque
+              dentro de la comunidad estudiantil, priorizando contacto directo y navegación clara.</p>
+          </article>
+        </div>
+        <div class="col-lg-6 col-xl-5">
+          <article class="content-card rounded-4 p-4 h-100">
+            <div class="icon-pill mb-3">◫</div>
+            <h2 class="h3 section-title mb-3">Alcance</h2>
+            <p class="mb-0">La propuesta está pensada para ejecutarse en navegadores modernos y adaptarse correctamente
+              a móviles, tabletas y pantallas de escritorio sin depender de componentes complejos.</p>
+          </article>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <p>MarkeTec · ITM</p>
+  <footer class="container pb-4">
+    <p class="footer-note text-center mb-0">MarkeTec · Instituto Tecnológico de Morelia</p>
   </footer>
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -1,26 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Café-Tec</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <header>
-    <h1 id="titulo"></h1>
-  </header>
-
-  <nav>
-    <a href="index.html">Inicio</a> |
-    <a href="about.html">About us</a> |
-    <a href="mision-vision.html">Misión y visión</a> |
-    <a href="mapa.html">Mapa del ITM</a> |
-    <a href="registro-vendedor.html">Registro de vendedor</a> |
-    <a href="contacto-vendedor.html">Contacto de vendedor</a>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top top-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">MarkeTec</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <li class="nav-item"><a class="nav-link" href="mision-vision.html">Misión y visión</a></li>
+          <li class="nav-item"><a class="nav-link" href="mapa.html">Mapa</a></li>
+          <li class="nav-item"><a class="nav-link" href="registro-vendedor.html">Registro</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contacto-vendedor.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <div id="menu"></div>
+  <main class="container py-4 py-lg-5">
+    <div class="app-shell rounded-5 p-3 p-md-4 p-xl-5">
+      <section class="hero-card rounded-5 text-white p-4 p-lg-5 mb-4">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <span class="badge rounded-pill brand-badge px-3 py-2 mb-3">MENÚ DESTACADO</span>
+            <h1 id="titulo" class="display-6 fw-bold mb-3"></h1>
+            <p class="lead mb-0">Consulta el menú de cafetería en un formato más claro, pensado para revisarse rápido desde el celular durante clases o recesos.</p>
+          </div>
+          <div class="col-lg-4">
+            <div class="stat-card rounded-4 p-3">
+              <div class="stat-label mb-2">Vista</div>
+              <p class="mb-0">Categorías separadas, precios visibles y variantes agrupadas para una lectura más rápida.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="row g-4"></section>
+    </div>
+  </main>
 
   <!-- JSON incrustado -->
   <script id="menu-data" type="application/json">
@@ -293,41 +320,78 @@
 
   <script>
     const data = JSON.parse(document.getElementById("menu-data").textContent);
-
     document.getElementById("titulo").textContent = data.restaurante;
 
     const container = document.getElementById("menu");
+    const normalizeLabel = (value) => value.replaceAll("_", " ").replace(/\b\w/g, (char) => char.toUpperCase());
 
     for (const categoria in data.categorias) {
-      const h2 = document.createElement("h2");
-      h2.textContent = categoria.toUpperCase();
-      container.appendChild(h2);
+      const column = document.createElement("div");
+      column.className = "col-12 col-xl-6";
 
-      data.categorias[categoria].forEach(item => {
+      const card = document.createElement("article");
+      card.className = "menu-card rounded-4 p-4 h-100";
 
-        if (item.nombre) {
-          const row = document.createElement("div");
-          row.className = "item";
-          row.innerHTML = `<span>${item.nombre} </span><span>$${item.precio}</span>`;
-          container.appendChild(row);
-        }
+      const title = document.createElement("div");
+      title.className = "d-flex justify-content-between align-items-center gap-3 mb-3";
+      title.innerHTML = `
+        <div>
+          <h2 class="h4 category-title mb-1">${normalizeLabel(categoria)}</h2>
+          <p class="text-secondary mb-0">${data.categorias[categoria].length} opciones registradas</p>
+        </div>
+        <span class="badge rounded-pill text-bg-light border">${data.categorias[categoria].length}</span>
+      `;
+      card.appendChild(title);
+
+      const list = document.createElement("ul");
+      list.className = "list-unstyled soft-list mb-0";
+
+      data.categorias[categoria].forEach((item) => {
+        const listItem = document.createElement("li");
+        listItem.className = "py-3";
+
+        const name = item.nombre || item.nota || "Variedades";
+        const price = item.precio ? `$${item.precio}` : item.precio_adicional ? `+$${item.precio_adicional}` : "Consultar";
+
+        let extraContent = "";
 
         if (item.variedades) {
-          const row = document.createElement("div");
-          row.className = "item";
-          row.innerHTML = `<span>$${item.precio}</span>`;
-          container.appendChild(row);
-
-          const v = document.createElement("div");
-          v.className = "small";
-          v.textContent = item.variedades.join(", ");
-          container.appendChild(v);
+          extraContent += `
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              ${item.variedades.map((variedad) => `<span class="badge rounded-pill soft-chip">${variedad}</span>`).join("")}
+            </div>
+          `;
         }
 
+        if (item.incluye) {
+          extraContent += `
+            <div class="mt-3">
+              <p class="small text-secondary mb-2">Incluye:</p>
+              <div class="d-flex flex-wrap gap-2">
+                ${item.incluye.map((detalle) => `<span class="badge rounded-pill soft-chip">${detalle}</span>`).join("")}
+              </div>
+            </div>
+          `;
+        }
+
+        listItem.innerHTML = `
+          <div class="d-flex justify-content-between align-items-start gap-3">
+            <div>
+              <h3 class="h6 mb-1">${name}</h3>
+              ${item.nota && !item.nombre ? '<p class="text-secondary small mb-0">Complemento adicional</p>' : ""}
+            </div>
+            <span class="price-tag">${price}</span>
+          </div>
+          ${extraContent}
+        `;
+        list.appendChild(listItem);
       });
+
+      card.appendChild(list);
+      column.appendChild(card);
+      container.appendChild(column);
     }
   </script>
-
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
