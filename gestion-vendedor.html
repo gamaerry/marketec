@@ -108,27 +108,17 @@
                   </div>
                   <div class="col-md-6">
                     <label for="item-name" class="form-label">Nombre</label>
-                    <input class="form-control" id="item-name" type="text" placeholder="Ej. Chilaquiles verdes" />
+                    <input class="form-control" id="item-name" type="text" placeholder="Ej. Chilaquiles verdes"
+                      required />
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <label for="item-price" class="form-label">Precio</label>
-                    <input class="form-control" id="item-price" type="number" min="0" step="1" />
-                  </div>
-                  <div class="col-md-4">
-                    <label for="item-extra-price" class="form-label">Precio adicional</label>
-                    <input class="form-control" id="item-extra-price" type="number" min="0" step="1" />
-                  </div>
-                  <div class="col-md-4">
-                    <label for="item-note" class="form-label">Nota</label>
-                    <input class="form-control" id="item-note" type="text" placeholder="Ej. Extra queso" />
+                    <input class="form-control" id="item-price" type="number" min="0" step="1" required />
                   </div>
                   <div class="col-12">
-                    <label for="item-varieties" class="form-label">Variedades</label>
-                    <input class="form-control" id="item-varieties" type="text" placeholder="Separadas por coma" />
-                  </div>
-                  <div class="col-12">
-                    <label for="item-includes" class="form-label">Incluye</label>
-                    <input class="form-control" id="item-includes" type="text" placeholder="Separado por coma" />
+                    <label for="item-detail" class="form-label">Detalle</label>
+                    <textarea class="form-control" id="item-detail" rows="3"
+                      placeholder="Ej. Incluye agua del día o disponible solo por la mañana"></textarea>
                   </div>
                   <div class="col-12 d-grid d-sm-flex justify-content-sm-end">
                     <button class="btn btn-success px-4" type="submit">Agregar producto</button>
@@ -153,10 +143,6 @@
     let vendorsCache = [];
     let activeVendorSlug = null;
 
-    function parseList(value) {
-      return value.split(",").map((item) => item.trim()).filter(Boolean);
-    }
-
     function renderCategorySelect(vendor) {
       const select = document.getElementById("item-category");
       const categories = Object.keys(vendor.menu);
@@ -168,18 +154,12 @@
     function buildItemPayload() {
       const payload = {};
       const name = document.getElementById("item-name").value.trim();
-      const note = document.getElementById("item-note").value.trim();
       const price = document.getElementById("item-price").value;
-      const extraPrice = document.getElementById("item-extra-price").value;
-      const varieties = parseList(document.getElementById("item-varieties").value);
-      const includes = parseList(document.getElementById("item-includes").value);
+      const detail = document.getElementById("item-detail").value.trim();
 
       if (name) payload.nombre = name;
-      if (note) payload.nota = note;
+      if (detail) payload.detalle = detail;
       if (price !== "") payload.precio = Number(price);
-      if (extraPrice !== "") payload.precio_adicional = Number(extraPrice);
-      if (varieties.length) payload.variedades = varieties;
-      if (includes.length) payload.incluye = includes;
 
       return payload;
     }
@@ -227,13 +207,9 @@
                 <tbody>
                   ${items.map((item, index) => `
                     <tr>
-                      <td>${item.nombre || item.nota || "Variedades"}</td>
+                      <td>${getItemName(item)}</td>
                       <td>${formatPrice(item)}</td>
-                      <td>${[
-          item.variedades?.length ? `Variedades: ${item.variedades.join(", ")}` : "",
-          item.incluye?.length ? `Incluye: ${item.incluye.join(", ")}` : "",
-          item.nota && item.nombre ? `Nota: ${item.nota}` : ""
-        ].filter(Boolean).join(" · ") || "Sin detalle extra"}</td>
+                      <td>${getItemDetail(item) || "Sin detalle extra"}</td>
                       <td class="text-end">
                         <button class="btn btn-outline-secondary btn-sm me-2" type="button" data-action="edit-item" data-category="${category}" data-index="${index}">Editar</button>
                         <button class="btn btn-outline-danger btn-sm" type="button" data-action="delete-item" data-category="${category}" data-index="${index}">Eliminar</button>
@@ -320,8 +296,8 @@
       const category = document.getElementById("item-category").value;
       const item = buildItemPayload();
 
-      if (!category || (!item.nombre && !item.nota && !item.variedades?.length)) {
-        alert("Captura al menos nombre, nota o variedades.");
+      if (!category || !item.nombre || typeof item.precio !== "number") {
+        alert("Captura categoría, nombre y precio.");
         return;
       }
 
@@ -356,66 +332,30 @@
       if (action === "edit-item") {
         const vendor = getVendorBySlug(vendorsCache, activeVendorSlug);
         const item = vendor.menu[category][Number(index)];
-        const nextName = prompt("Nombre del producto", item.nombre || "");
+        const nextName = prompt("Nombre del producto", getItemName(item));
         if (nextName === null) {
           return;
         }
 
-        const nextPrice = prompt("Precio (deja vacío si no aplica)", item.precio ?? "");
+        const nextPrice = prompt("Precio", item.precio ?? "");
         if (nextPrice === null) {
           return;
         }
 
-        const nextNote = prompt("Nota", item.nota || "");
-        if (nextNote === null) {
-          return;
-        }
-
-        const nextExtraPrice = prompt("Precio adicional (deja vacío si no aplica)", item.precio_adicional ?? "");
-        if (nextExtraPrice === null) {
-          return;
-        }
-
-        const nextVarieties = prompt("Variedades separadas por coma", item.variedades?.join(", ") || "");
-        if (nextVarieties === null) {
-          return;
-        }
-
-        const nextIncludes = prompt("Incluye separado por coma", item.incluye?.join(", ") || "");
-        if (nextIncludes === null) {
+        const nextDetail = prompt("Detalle", getItemDetail(item));
+        if (nextDetail === null) {
           return;
         }
 
         updateVendor((currentVendor) => {
           const currentItem = currentVendor.menu[category][Number(index)];
           currentItem.nombre = nextName.trim();
-          currentItem.nota = nextNote.trim();
+          currentItem.precio = Number(nextPrice);
 
-          if (nextPrice === "") {
-            delete currentItem.precio;
+          if (nextDetail.trim()) {
+            currentItem.detalle = nextDetail.trim();
           } else {
-            currentItem.precio = Number(nextPrice);
-          }
-
-          if (nextExtraPrice === "") {
-            delete currentItem.precio_adicional;
-          } else {
-            currentItem.precio_adicional = Number(nextExtraPrice);
-          }
-
-          const varieties = parseList(nextVarieties);
-          const includes = parseList(nextIncludes);
-
-          if (varieties.length) {
-            currentItem.variedades = varieties;
-          } else {
-            delete currentItem.variedades;
-          }
-
-          if (includes.length) {
-            currentItem.incluye = includes;
-          } else {
-            delete currentItem.incluye;
+            delete currentItem.detalle;
           }
         });
       }

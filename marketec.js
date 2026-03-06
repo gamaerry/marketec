@@ -62,3 +62,29 @@ function formatPrice(item) {
 
   return "Consultar";
 }
+
+function getItemName(item) {
+  return item.nombre || item.nota || "Producto";
+}
+
+function getItemDetail(item) {
+  if (item.detalle) {
+    return item.detalle;
+  }
+
+  const parts = [];
+
+  if (item.variedades?.length) {
+    parts.push(`Variedades: ${item.variedades.join(", ")}`);
+  }
+
+  if (item.incluye?.length) {
+    parts.push(`Incluye: ${item.incluye.join(", ")}`);
+  }
+
+  if (item.nota && item.nombre) {
+    parts.push(item.nota);
+  }
+
+  return parts.join(" · ");
+}

@@ -6,7 +6,7 @@
     "icono": "☕",
     "descripcion": "Menú escolar con desayunos, antojitos, combos y bebidas.",
     "heroBadge": "MENÚ DESTACADO",
-    "heroDescripcion": "Consulta el menú de cafetería en un formato más claro, pensado para revisarse rápido desde el celular durante clases o recesos.",
+    "heroDescripcion": "Consulta el menú del vendedor en un formato más claro, pensado para consultarse rápido.",
     "menu": {
       "tortas": [
         {
