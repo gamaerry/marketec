@@ -50,7 +50,7 @@
         </div>
       </section>
 
-      <section class="admin-grid">
+      <div class="admin-grid">
         <article id="login-panel" class="content-card rounded-4 p-4 auth-panel">
           <h2 class="h4 section-title mb-3">Iniciar sesión</h2>
           <form id="login-form" class="row g-3">
@@ -71,7 +71,7 @@
         <section id="admin-panel" class="d-none">
           <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
             <div>
-              <h2 id="vendor-name" class="h3 section-title mb-1"></h2>
+              <h2 id="vendor-name" class="h3 section-title mb-1">Panel del vendedor</h2>
               <p class="menu-meta mb-0">Los cambios se guardan en este navegador con <code>localStorage</code>.</p>
             </div>
             <div class="d-flex flex-wrap gap-2">
@@ -104,7 +104,9 @@
                 <form id="item-form" class="row g-3">
                   <div class="col-md-6">
                     <label for="item-category" class="form-label">Categoría</label>
-                    <select class="form-select" id="item-category" required></select>
+                    <select class="form-select" id="item-category" required>
+                      <option value="">Selecciona una categoría</option>
+                    </select>
                   </div>
                   <div class="col-md-6">
                     <label for="item-name" class="form-label">Nombre</label>
@@ -130,7 +132,7 @@
 
           <div id="menu-editor" class="row g-4"></div>
         </section>
-      </section>
+      </div>
     </div>
   </main>
 
@@ -146,7 +148,9 @@
     function renderCategorySelect(vendor) {
       const select = document.getElementById("item-category");
       const categories = Object.keys(vendor.menu);
-      select.innerHTML = categories.map((category) => `
+      select.innerHTML = `
+        <option value="">Selecciona una categoría</option>
+      ` + categories.map((category) => `
         <option value="${category}">${normalizeLabel(category)}</option>
       `).join("");
     }
