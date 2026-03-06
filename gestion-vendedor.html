@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MarkeTec | Gestión de vendedor</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top top-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">MarkeTec</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <li class="nav-item"><a class="nav-link" href="mision-vision.html">Misión y visión</a></li>
+          <li class="nav-item"><a class="nav-link" href="mapa.html">Mapa</a></li>
+          <li class="nav-item"><a class="nav-link" href="registro-vendedor.html">Registro</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto-vendedor.html">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link active" href="gestion-vendedor.html">Acceso vendedor</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4 py-lg-5">
+    <div class="app-shell rounded-5 p-3 p-md-4 p-xl-5">
+      <section class="hero-card rounded-5 text-white p-4 p-lg-5 mb-4">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <span class="badge rounded-pill brand-badge px-3 py-2 mb-3">GESTIÓN DE MENÚ</span>
+            <h1 class="display-6 fw-bold mb-3">Acceso para vendedores registrados</h1>
+            <p class="lead mb-0">Autentícate para administrar tu menú, crear categorías y actualizar precios desde una interfaz simple.</p>
+          </div>
+          <div class="col-lg-4">
+            <div class="stat-card rounded-4 p-3">
+              <div class="stat-label mb-2">Estado</div>
+              <p id="session-status" class="mb-0">Sin sesión activa.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-grid">
+        <article id="login-panel" class="content-card rounded-4 p-4 auth-panel">
+          <h2 class="h4 section-title mb-3">Iniciar sesión</h2>
+          <form id="login-form" class="row g-3">
+            <div class="col-12">
+              <label for="username" class="form-label">Usuario</label>
+              <input class="form-control" id="username" name="username" type="text" required />
+            </div>
+            <div class="col-12">
+              <label for="password" class="form-label">Contraseña</label>
+              <input class="form-control" id="password" name="password" type="password" required />
+            </div>
+            <div class="col-12 d-grid d-sm-flex justify-content-sm-end gap-2">
+              <button class="btn btn-success px-4" type="submit">Entrar</button>
+            </div>
+          </form>
+          <p class="menu-meta mt-3 mb-0">Credenciales iniciales: revisa <code>usuarios.json</code>.</p>
+        </article>
+
+        <section id="admin-panel" class="d-none">
+          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
+            <div>
+              <h2 id="vendor-name" class="h3 section-title mb-1"></h2>
+              <p class="menu-meta mb-0">Los cambios se guardan en este navegador con <code>localStorage</code>.</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <a id="public-link" class="btn btn-outline-success" href="cafeteria-tec.html?vendedor=cafeteria-tec">Ver menú público</a>
+              <button id="logout-btn" class="btn btn-outline-secondary" type="button">Cerrar sesión</button>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-lg-5">
+              <article class="menu-admin-card rounded-4 p-4 h-100">
+                <h3 class="h5 section-title mb-3">Nueva categoría</h3>
+                <form id="category-form" class="row g-3">
+                  <div class="col-12">
+                    <label for="category-name" class="form-label">Nombre interno</label>
+                    <input class="form-control" id="category-name" name="category-name" type="text" placeholder="Ej. desayunos_especiales" required />
+                    <div class="form-text">Usa minúsculas y guiones bajos para mantener el formato actual.</div>
+                  </div>
+                  <div class="col-12 d-grid">
+                    <button class="btn btn-warning" type="submit">Agregar categoría</button>
+                  </div>
+                </form>
+              </article>
+            </div>
+            <div class="col-lg-7">
+              <article class="menu-admin-card rounded-4 p-4 h-100">
+                <h3 class="h5 section-title mb-3">Nuevo producto</h3>
+                <form id="item-form" class="row g-3">
+                  <div class="col-md-6">
+                    <label for="item-category" class="form-label">Categoría</label>
+                    <select class="form-select" id="item-category" required></select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="item-name" class="form-label">Nombre</label>
+                    <input class="form-control" id="item-name" type="text" placeholder="Ej. Chilaquiles verdes" />
+                  </div>
+                  <div class="col-md-4">
+                    <label for="item-price" class="form-label">Precio</label>
+                    <input class="form-control" id="item-price" type="number" min="0" step="1" />
+                  </div>
+                  <div class="col-md-4">
+                    <label for="item-extra-price" class="form-label">Precio adicional</label>
+                    <input class="form-control" id="item-extra-price" type="number" min="0" step="1" />
+                  </div>
+                  <div class="col-md-4">
+                    <label for="item-note" class="form-label">Nota</label>
+                    <input class="form-control" id="item-note" type="text" placeholder="Ej. Extra queso" />
+                  </div>
+                  <div class="col-12">
+                    <label for="item-varieties" class="form-label">Variedades</label>
+                    <input class="form-control" id="item-varieties" type="text" placeholder="Separadas por coma" />
+                  </div>
+                  <div class="col-12">
+                    <label for="item-includes" class="form-label">Incluye</label>
+                    <input class="form-control" id="item-includes" type="text" placeholder="Separado por coma" />
+                  </div>
+                  <div class="col-12 d-grid d-sm-flex justify-content-sm-end">
+                    <button class="btn btn-success px-4" type="submit">Agregar producto</button>
+                  </div>
+                </form>
+              </article>
+            </div>
+          </div>
+
+          <div id="menu-editor" class="row g-4"></div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer class="container pb-4">
+    <p class="footer-note text-center mb-0">MarkeTec · Instituto Tecnológico de Morelia</p>
+  </footer>
+
+  <script src="marketec.js"></script>
+  <script>
+    let vendorsCache = [];
+    let activeVendorSlug = null;
+
+    function parseList(value) {
+      return value.split(",").map((item) => item.trim()).filter(Boolean);
+    }
+
+    function renderCategorySelect(vendor) {
+      const select = document.getElementById("item-category");
+      const categories = Object.keys(vendor.menu);
+      select.innerHTML = categories.map((category) => `
+        <option value="${category}">${normalizeLabel(category)}</option>
+      `).join("");
+    }
+
+    function buildItemPayload() {
+      const payload = {};
+      const name = document.getElementById("item-name").value.trim();
+      const note = document.getElementById("item-note").value.trim();
+      const price = document.getElementById("item-price").value;
+      const extraPrice = document.getElementById("item-extra-price").value;
+      const varieties = parseList(document.getElementById("item-varieties").value);
+      const includes = parseList(document.getElementById("item-includes").value);
+
+      if (name) payload.nombre = name;
+      if (note) payload.nota = note;
+      if (price !== "") payload.precio = Number(price);
+      if (extraPrice !== "") payload.precio_adicional = Number(extraPrice);
+      if (varieties.length) payload.variedades = varieties;
+      if (includes.length) payload.incluye = includes;
+
+      return payload;
+    }
+
+    function renderEditor(vendor) {
+      document.getElementById("vendor-name").textContent = vendor.nombre;
+      document.getElementById("public-link").href = `cafeteria-tec.html?vendedor=${vendor.slug}`;
+      document.getElementById("session-status").textContent = `Sesión activa: ${vendor.nombre}.`;
+      renderCategorySelect(vendor);
+
+      const categories = Object.entries(vendor.menu);
+      const container = document.getElementById("menu-editor");
+
+      if (!categories.length) {
+        container.innerHTML = `
+          <div class="col-12">
+            <article class="menu-admin-card empty-state rounded-4 p-4">
+              <p class="mb-0">Este vendedor aún no tiene categorías registradas.</p>
+            </article>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = categories.map(([category, items]) => `
+        <div class="col-12">
+          <article class="menu-admin-card rounded-4 p-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
+              <div>
+                <h3 class="h5 section-title mb-1">${normalizeLabel(category)}</h3>
+                <p class="menu-meta mb-0">${items.length} productos registrados.</p>
+              </div>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="delete-category" data-category="${category}">Eliminar categoría</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Detalle</th>
+                    <th class="text-end">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${items.map((item, index) => `
+                    <tr>
+                      <td>${item.nombre || item.nota || "Variedades"}</td>
+                      <td>${formatPrice(item)}</td>
+                      <td>${[
+                        item.variedades?.length ? `Variedades: ${item.variedades.join(", ")}` : "",
+                        item.incluye?.length ? `Incluye: ${item.incluye.join(", ")}` : "",
+                        item.nota && item.nombre ? `Nota: ${item.nota}` : ""
+                      ].filter(Boolean).join(" · ") || "Sin detalle extra"}</td>
+                      <td class="text-end">
+                        <button class="btn btn-outline-secondary btn-sm me-2" type="button" data-action="edit-item" data-category="${category}" data-index="${index}">Editar</button>
+                        <button class="btn btn-outline-danger btn-sm" type="button" data-action="delete-item" data-category="${category}" data-index="${index}">Eliminar</button>
+                      </td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      `).join("");
+    }
+
+    function updateVendor(mutator) {
+      const vendor = getVendorBySlug(vendorsCache, activeVendorSlug);
+      mutator(vendor);
+      saveVendors(vendorsCache);
+      renderEditor(vendor);
+    }
+
+    function showAdmin(vendorSlug) {
+      activeVendorSlug = vendorSlug;
+      const vendor = getVendorBySlug(vendorsCache, vendorSlug);
+      document.getElementById("login-panel").classList.add("d-none");
+      document.getElementById("admin-panel").classList.remove("d-none");
+      renderEditor(vendor);
+    }
+
+    async function bootstrap() {
+      vendorsCache = await loadVendors();
+      const session = getSession();
+      if (session?.vendorSlug && getVendorBySlug(vendorsCache, session.vendorSlug)) {
+        showAdmin(session.vendorSlug);
+      }
+    }
+
+    document.getElementById("login-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const users = await loadUsers();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const user = users.find((item) => item.username === username && item.password === password);
+
+      if (!user) {
+        alert("Credenciales incorrectas.");
+        return;
+      }
+
+      setSession({
+        username: user.username,
+        vendorSlug: user.vendorSlug
+      });
+      showAdmin(user.vendorSlug);
+    });
+
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      clearSession();
+      activeVendorSlug = null;
+      document.getElementById("admin-panel").classList.add("d-none");
+      document.getElementById("login-panel").classList.remove("d-none");
+      document.getElementById("session-status").textContent = "Sin sesión activa.";
+    });
+
+    document.getElementById("category-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = document.getElementById("category-name");
+      const category = input.value.trim();
+      if (!category) {
+        return;
+      }
+
+      updateVendor((vendor) => {
+        if (!vendor.menu[category]) {
+          vendor.menu[category] = [];
+        }
+      });
+
+      input.value = "";
+    });
+
+    document.getElementById("item-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const category = document.getElementById("item-category").value;
+      const item = buildItemPayload();
+
+      if (!category || (!item.nombre && !item.nota && !item.variedades?.length)) {
+        alert("Captura al menos nombre, nota o variedades.");
+        return;
+      }
+
+      updateVendor((vendor) => {
+        vendor.menu[category].push(item);
+      });
+
+      event.target.reset();
+      renderCategorySelect(getVendorBySlug(vendorsCache, activeVendorSlug));
+    });
+
+    document.getElementById("menu-editor").addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) {
+        return;
+      }
+
+      const { action, category, index } = button.dataset;
+
+      if (action === "delete-category") {
+        updateVendor((vendor) => {
+          delete vendor.menu[category];
+        });
+      }
+
+      if (action === "delete-item") {
+        updateVendor((vendor) => {
+          vendor.menu[category].splice(Number(index), 1);
+        });
+      }
+
+      if (action === "edit-item") {
+        const vendor = getVendorBySlug(vendorsCache, activeVendorSlug);
+        const item = vendor.menu[category][Number(index)];
+        const nextName = prompt("Nombre del producto", item.nombre || "");
+        if (nextName === null) {
+          return;
+        }
+
+        const nextPrice = prompt("Precio (deja vacío si no aplica)", item.precio ?? "");
+        if (nextPrice === null) {
+          return;
+        }
+
+        const nextNote = prompt("Nota", item.nota || "");
+        if (nextNote === null) {
+          return;
+        }
+
+        const nextExtraPrice = prompt("Precio adicional (deja vacío si no aplica)", item.precio_adicional ?? "");
+        if (nextExtraPrice === null) {
+          return;
+        }
+
+        const nextVarieties = prompt("Variedades separadas por coma", item.variedades?.join(", ") || "");
+        if (nextVarieties === null) {
+          return;
+        }
+
+        const nextIncludes = prompt("Incluye separado por coma", item.incluye?.join(", ") || "");
+        if (nextIncludes === null) {
+          return;
+        }
+
+        updateVendor((currentVendor) => {
+          const currentItem = currentVendor.menu[category][Number(index)];
+          currentItem.nombre = nextName.trim();
+          currentItem.nota = nextNote.trim();
+
+          if (nextPrice === "") {
+            delete currentItem.precio;
+          } else {
+            currentItem.precio = Number(nextPrice);
+          }
+
+          if (nextExtraPrice === "") {
+            delete currentItem.precio_adicional;
+          } else {
+            currentItem.precio_adicional = Number(nextExtraPrice);
+          }
+
+          const varieties = parseList(nextVarieties);
+          const includes = parseList(nextIncludes);
+
+          if (varieties.length) {
+            currentItem.variedades = varieties;
+          } else {
+            delete currentItem.variedades;
+          }
+
+          if (includes.length) {
+            currentItem.incluye = includes;
+          } else {
+            delete currentItem.incluye;
+          }
+        });
+      }
+    });
+
+    bootstrap().catch(() => {
+      document.getElementById("session-status").textContent = "No fue posible cargar la configuración.";
+    });
+  </script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

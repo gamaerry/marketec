@@ -1,0 +1,274 @@
+[
+  {
+    "slug": "cafeteria-tec",
+    "nombre": "Cafetería Tec",
+    "categoria": "Comida",
+    "icono": "☕",
+    "descripcion": "Menú escolar con desayunos, antojitos, combos y bebidas.",
+    "heroBadge": "MENÚ DESTACADO",
+    "heroDescripcion": "Consulta el menú de cafetería en un formato más claro, pensado para revisarse rápido desde el celular durante clases o recesos.",
+    "menu": {
+      "tortas": [
+        {
+          "precio": 40,
+          "variedades": [
+            "Jamón",
+            "Rajas",
+            "Salchicha"
+          ]
+        },
+        {
+          "precio": 45,
+          "variedades": [
+            "Deshebrada",
+            "Tinga",
+            "Mole"
+          ]
+        },
+        {
+          "precio": 50,
+          "variedades": [
+            "Milanesa",
+            "Cochinita",
+            "Asada",
+            "Bisteck",
+            "Chorizo",
+            "Adobada"
+          ]
+        },
+        {
+          "nota": "Extra queso",
+          "precio_adicional": 5
+        }
+      ],
+      "sandwiches": [
+        {
+          "precio": 35,
+          "variedades": [
+            "Jamón",
+            "Salchicha",
+            "Deshebrada",
+            "Tinga",
+            "Rajas",
+            "Mole"
+          ]
+        },
+        {
+          "precio": 40,
+          "variedades": [
+            "Milanesa",
+            "Cochinita",
+            "Asada",
+            "Bisteck",
+            "Combinados"
+          ]
+        }
+      ],
+      "antojitos": [
+        {
+          "nombre": "Tacos (unidad)",
+          "variedades": [
+            "Asada",
+            "Milanesa",
+            "Cochinita",
+            "Pechuga",
+            "Combinados",
+            "Bisteck",
+            "Chorizo",
+            "Adobada",
+            "Deshebrada",
+            "Tinga",
+            "Salchicha"
+          ],
+          "precio": 15
+        },
+        {
+          "nombre": "Quesadillas largas sencillas",
+          "precio": 20
+        },
+        {
+          "nombre": "Quesadillas largas con guisado",
+          "precio": 30
+        },
+        {
+          "nombre": "Molletes (2) sencillos",
+          "precio": 40
+        },
+        {
+          "nombre": "Molletes (2) con guisado",
+          "precio": 50
+        }
+      ],
+      "a_la_carta": [
+        {
+          "nombre": "Sincronizadas",
+          "precio": 70
+        },
+        {
+          "nombre": "Chilaquiles con carne",
+          "precio": 65
+        },
+        {
+          "nombre": "Hamburguesa con papas",
+          "precio": 65
+        },
+        {
+          "nombre": "Tacos Dorados (4)",
+          "precio": 60
+        },
+        {
+          "nombre": "Huevos al gusto",
+          "precio": 60
+        },
+        {
+          "nombre": "Chilaquiles con 1 huevo",
+          "precio": 60
+        },
+        {
+          "nombre": "Chilaquiles sencillos",
+          "precio": 55
+        },
+        {
+          "nombre": "Enchiladas Verdes",
+          "precio": 55
+        },
+        {
+          "nombre": "Hamburguesa sencilla",
+          "precio": 55
+        },
+        {
+          "nombre": "Baguette",
+          "precio": 55
+        },
+        {
+          "nombre": "Bowl de arroz Pollo Teriyaki",
+          "precio": 55
+        },
+        {
+          "nombre": "Costras",
+          "precio": 50
+        },
+        {
+          "nombre": "Bowl de arroz Vegetariano",
+          "precio": 50
+        },
+        {
+          "nombre": "Ensalada (pechuga, asada o milanesa)",
+          "precio": 50
+        },
+        {
+          "nombre": "Burritos (2)",
+          "precio": 45
+        },
+        {
+          "nombre": "Hot-Dog con papas",
+          "precio": 45
+        },
+        {
+          "nombre": "Orden de nuggets",
+          "precio": 45
+        },
+        {
+          "nombre": "Energético",
+          "precio": 45
+        },
+        {
+          "nombre": "Orden de papas",
+          "precio": 40
+        },
+        {
+          "nombre": "Sope guisado",
+          "precio": 35
+        },
+        {
+          "nombre": "Hot-Dog sencillo",
+          "precio": 30
+        },
+        {
+          "nombre": "Sope sencillo",
+          "precio": 25
+        },
+        {
+          "nombre": "Media orden de papas",
+          "precio": 25
+        },
+        {
+          "nombre": "Banderilla",
+          "precio": 25
+        }
+      ],
+      "bebidas": [
+        {
+          "nombre": "Jugo",
+          "precio": 30
+        },
+        {
+          "nombre": "Licuado",
+          "precio": 30
+        },
+        {
+          "nombre": "Agua del día",
+          "precio": 20
+        }
+      ],
+      "combos_con_agua": [
+        {
+          "nombre": "Hamburguesa con papas",
+          "precio": 70
+        },
+        {
+          "nombre": "2 quesadillas con guisado",
+          "precio": 65
+        },
+        {
+          "nombre": "Orden de tacos dorados",
+          "precio": 65
+        },
+        {
+          "nombre": "Ensalada",
+          "precio": 60
+        },
+        {
+          "nombre": "3 tacos de guisado",
+          "precio": 55
+        },
+        {
+          "nombre": "Hot-Dog con papas",
+          "precio": 50
+        },
+        {
+          "nombre": "Nuggets con papas",
+          "precio": 50
+        },
+        {
+          "nombre": "Banderilla con papas",
+          "precio": 30
+        }
+      ],
+      "paquetes_completos": [
+        {
+          "nombre": "Almuerzo",
+          "precio": 60,
+          "incluye": [
+            "Fruta",
+            "1 guisado",
+            "1 guarnición",
+            "Bolillo o tortillas",
+            "Agua o café"
+          ]
+        },
+        {
+          "nombre": "Comida Corrida",
+          "precio": 65,
+          "incluye": [
+            "Entrada",
+            "1 guisado",
+            "2 guarniciones",
+            "Bolillo o tortillas",
+            "Agua"
+          ]
+        }
+      ]
+    }
+  }
+]
